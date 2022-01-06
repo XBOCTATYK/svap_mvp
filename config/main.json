@@ -1,0 +1,16 @@
+{
+    "db": {
+        "type": "postgres",
+        "host": "localhost",
+        "port": 5432,
+        "username": "svat_mvp_app",
+        "password": "{db_secret}",
+        "database": "svat_mvp_db",
+        "entities": ["src/models/*.ts"],
+        "migrationsTableName": "custom_migration_table",
+        "migrations": ["migrations/*.ts"],
+        "cli": {
+            "migrationsDir": "migration"
+        }
+    }
+}
