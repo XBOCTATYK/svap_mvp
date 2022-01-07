@@ -2,12 +2,30 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { RepositoryModule } from './repository/repository.module';
-import { Repository } from './repository';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from './config/config.module';
+import { LocalJsonSource } from './config/sources/LocalJsonSource';
 
 @Module({
-  imports: [AuthModule, RepositoryModule],
+  imports: [
+    ConfigModule.register({
+      env: process.env.NODE_ENV || 'development',
+      sources: [
+        new LocalJsonSource({
+          path: './config',
+          mainConfigName: 'main',
+        }),
+      ],
+    }),
+    AuthModule,
+    TypeOrmModule.forRootAsync({
+      useFactory: (...args: any[]) => {
+        console.log(args);
+        return {};
+      },
+    }),
+  ],
   controllers: [AppController],
-  providers: [AppService, Repository],
+  providers: [AppService],
 })
 export class AppModule {}
