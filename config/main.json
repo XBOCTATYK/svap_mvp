@@ -6,9 +6,10 @@
         "username": "svat_mvp_app",
         "database": "svat_mvp_db",
         "migrationsTableName": "custom_migration_table",
-        "migrations": ["migrations/*.ts"],
+        "migrations": ["migration/patch/*.ts"],
         "cli": {
-            "migrationsDir": "migration"
+            "migrationsDir": "./migration/patch",
+            "entitiesDir": "./src/models"
         }
     }
 }

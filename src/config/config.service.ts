@@ -4,7 +4,7 @@ import merge from 'lodash/merge';
 
 @Injectable()
 export class ConfigService {
-  private readonly mergedConfig: { [x: string]: any } = {};
+  private readonly mergedConfig: { [x: string]: unknown } = {};
 
   constructor(@Inject('CONFIG_VALUES') private options: ConfigModuleOptions) {
     this.mergedConfig = options.sources.reduce(
@@ -13,7 +13,9 @@ export class ConfigService {
     );
   }
 
-  get() {
-    return this.mergedConfig;
+  get<T>(name?: string) {
+    if (!name) return this.mergedConfig;
+
+    return this.mergedConfig[name] as T;
   }
 }

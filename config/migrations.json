@@ -1,0 +1,9 @@
+{
+    "db": {
+        "entities": ["src/models/*.ts"],
+        "entitiesDir": "src/models",
+        "cli": {
+            "entitiesDir": "src/models"
+        }
+    }
+}

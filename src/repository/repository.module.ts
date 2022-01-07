@@ -13,7 +13,7 @@ import { ContactType } from '../models/ContactType';
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigService) => {
         return {
-          ...configService.get().db,
+          ...configService.get('db'),
           autoLoadEntities: false,
           entities: [
             User,
