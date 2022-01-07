@@ -1,4 +1,10 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { User } from './User';
 import { Gender } from './Gender';
 
@@ -7,8 +13,8 @@ export class UserProfile {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
   @OneToOne(() => User)
+  @JoinColumn()
   account: User;
 
   @Column()
@@ -17,8 +23,8 @@ export class UserProfile {
   @Column()
   firstName: string;
 
-  @Column()
   @OneToOne(() => Gender)
+  @JoinColumn()
   gender: Gender;
 
   @Column()

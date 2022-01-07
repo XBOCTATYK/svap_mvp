@@ -1,26 +1,23 @@
-import { ConfigModuleOptions, ConfigSource } from '../config.types';
-import merge from 'lodash/merge';
+import { ConfigSource } from '../config.types';
 import * as fs from 'fs';
 import * as path from 'path';
 
 interface LocalJsonSourceOptions {
   path: string;
-  mainConfigName?: string;
+  configName?: string;
 }
 
 export class LocalJsonSource implements ConfigSource {
-  mainConfig = {};
+  config = {};
   path = './config';
 
   constructor(sourceOptions: LocalJsonSourceOptions) {
     this.path = sourceOptions.path;
-    this.mainConfig = this.readConfigFile(sourceOptions.mainConfigName);
+    this.config = this.readConfigFile(sourceOptions.configName);
   }
 
-  get(options: ConfigModuleOptions): { [p: string]: any } {
-    const configByEnv = this.readConfigFile(options.env);
-
-    return merge(this.mainConfig, configByEnv);
+  get() {
+    return this.config;
   }
 
   private readConfigFile(name: string) {

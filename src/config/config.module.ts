@@ -6,6 +6,7 @@ import { ConfigModuleOptions } from './config.types';
 export class ConfigModule {
   static register(options: ConfigModuleOptions): DynamicModule {
     return {
+      global: options.global || false,
       module: ConfigModule,
       providers: [
         {

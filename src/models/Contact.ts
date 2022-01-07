@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -9,16 +10,16 @@ import { UserProfile } from './UserProfile';
 import { ContactType } from './ContactType';
 
 @Entity()
-class Contact {
+export class Contact {
   @PrimaryGeneratedColumn()
   id: number;
 
   @ManyToOne(() => UserProfile)
-  @Column()
+  @JoinColumn()
   profile: UserProfile;
 
   @OneToOne(() => ContactType)
-  @Column()
+  @JoinColumn()
   type: ContactType;
 
   @Column()

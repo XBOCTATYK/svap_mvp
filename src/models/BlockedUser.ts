@@ -1,4 +1,10 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { User } from './User';
 
 @Entity()
@@ -7,7 +13,7 @@ export class BlockedUser {
   id: number;
 
   @OneToOne(() => User)
-  @Column()
+  @JoinColumn()
   account: User;
 
   @Column()

@@ -1,8 +1,8 @@
 export interface ConfigModuleOptions {
-  env?: string;
   sources?: ConfigSource[];
+  global?: boolean;
 }
 
 export interface ConfigSource {
-  get(options: ConfigModuleOptions): { [x: string]: any };
+  get(options?: ConfigModuleOptions): { [x: string]: any };
 }
