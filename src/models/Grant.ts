@@ -1,25 +1,27 @@
 import {
-  Column,
   CreateDateColumn,
   Entity,
   Index,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from './User';
+import { GrantType } from './GrantType';
 
 @Entity()
-export class Psycho {
-  @PrimaryGeneratedColumn('increment')
-  @Index({ unique: true })
+export class Grant {
+  @PrimaryGeneratedColumn('increment', { type: 'bigint' })
+  @Index()
   id: number;
 
-  @Column()
-  amount: number;
+  @OneToOne(() => GrantType)
+  @JoinColumn()
+  type: GrantType;
 
-  @OneToOne(() => User)
+  @ManyToOne(() => User)
   @Index({ unique: true })
   @JoinColumn()
   account: User;

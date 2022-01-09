@@ -1,17 +1,11 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class ContactType {
+export class GrantType {
   @PrimaryGeneratedColumn('increment', { type: 'int2' })
-  @Index({ unique: true })
+  @Index()
   id: number;
 
   @Column()
-  shortDescription: string;
-
-  @Column()
-  description: string;
-
-  @Column()
-  icon: string;
+  name: string;
 }

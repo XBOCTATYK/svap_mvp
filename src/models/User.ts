@@ -1,11 +1,21 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Index,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
+@Index(['phone', 'password'], { unique: true })
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @Index({ unique: true })
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
+  @Column({ unique: true, length: 20 })
+  @Index({ unique: true })
   phone: string;
 
   @Column()
@@ -19,4 +29,10 @@ export class User {
 
   @Column()
   isAccepted: boolean;
+
+  @CreateDateColumn({ type: 'timestamp with time zone' })
+  createDate: Date;
+
+  @UpdateDateColumn({ type: 'timestamp with time zone' })
+  updateDate: Date;
 }
