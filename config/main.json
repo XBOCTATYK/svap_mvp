@@ -3,8 +3,8 @@
         "type": "postgres",
         "host": "localhost",
         "port": 5432,
-        "username": "svat_mvp_app",
-        "database": "svat_mvp_db",
+        "username": "postgres",
+        "database": "swat_mvp_db",
         "migrationsTableName": "custom_migration_table",
         "migrations": ["migration/patch/*.ts"],
         "cli": {

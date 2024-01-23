@@ -23,7 +23,6 @@ import { UserRepositoryService } from './services/user-repository.service';
           autoLoadEntities: false,
           entities: [
             User,
-            UserProfile,
             BlockedUser,
             UserProfile,
             Psycho,
@@ -39,6 +38,13 @@ import { UserRepositoryService } from './services/user-repository.service';
       },
       inject: [ConfigService],
     }),
+  ],
+  providers: [
+    UserRepositoryService,
+    {
+      provide: 'UserRepository',
+      useClass: User,
+    },
   ],
   exports: [UserRepositoryService],
 })

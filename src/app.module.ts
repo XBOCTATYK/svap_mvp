@@ -4,7 +4,8 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from './config/config.module';
 import { LocalJsonSource } from './config/sources/LocalJsonSource';
-import { RepositoryModule } from './repository/repository.module';
+import { NiceService } from './repository/services/nice.service';
+import { GameNiceService } from './repository/services/game-nice.service';
 
 const CONFIG_PATH = './config';
 const DEFAULT_ENV = 'development';
@@ -22,8 +23,14 @@ const ConfigDynamicModule = ConfigModule.register({
 });
 
 @Module({
-  imports: [ConfigDynamicModule, AuthModule, RepositoryModule],
+  imports: [ConfigDynamicModule, AuthModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: NiceService,
+      useClass: GameNiceService,
+    },
+  ],
 })
 export class AppModule {}
